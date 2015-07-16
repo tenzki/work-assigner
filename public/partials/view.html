@@ -1,0 +1,52 @@
+<div>
+    <div>
+        <div class="form-group">
+            <h3>
+                Timezones
+                <a ng-href="/#/timezone/create" class="btn btn-primary pull-right" id="btn_timezone_create">Add Timezone</a>
+            </h3>
+            <hr>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" ng-model="searchText.name" placeholder="Type here to filter Timezones...">
+            <hr>
+        </div>
+
+
+        <table id="timezone_list" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Timezone</th>
+                <th>Current time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="tmz in ctrl.timezones | filter:searchText">
+                <td>
+                    {{ tmz.name }}
+                </td>
+                <td>
+                    {{ tmz.city }}
+                </td>
+                <td>
+                    {{ tmz.timezone }}
+                </td>
+                <td timezone-current-time timezone="{{tmz.timezone}}">
+                </td>
+                <td class="text-right">
+                    <a ng-href="/#/" ng-click="ctrl.deleteTimezone(tmz)" class="btn btn-danger" id="btn_timezone_delete">Delete</a>
+                    <a ng-href="/#/timezone/edit/{{tmz.id}}" class="btn btn-success" id="btn_timezone_update">Edit</a>
+                </td>
+            </tr>
+            <tr ng-hide="ctrl.timezones.length">
+                <td colspan="3">
+                    <p class="text-center">No Timezones Found</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
